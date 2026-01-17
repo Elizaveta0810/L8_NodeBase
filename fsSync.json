@@ -1,0 +1,28 @@
+import fs from 'fs';
+
+export const writeFile = (file, data) =>
+  fs.writeFileSync(file, data);
+
+export const readFile = (file) =>
+  fs.readFileSync(file, 'utf-8');
+
+export const rewriteFile = (file, data) =>
+  fs.writeFileSync(file, data);
+
+export const clearFile = (file) =>
+  fs.writeFileSync(file, '');
+
+export const createDir = (dir) =>
+  fs.mkdirSync(dir, { recursive: true });
+
+export const removeDir = (dir) =>
+  fs.rmSync(dir, { recursive: true });
+
+export const cleanNoise = (file) => {
+  let text = readFile(file);
+  text = text.replace(/\d/g, '').toLowerCase();
+  writeFile(file, text);
+};
+
+export const copyFile = (src, dest) =>
+  fs.copyFileSync(src, dest);
